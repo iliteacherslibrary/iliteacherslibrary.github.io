@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0056b3">
+  <!-- Prevents search engines from indexing this internal tool -->
+  <meta name="robots" content="noindex">
+  <title>Welcome Message Tool - ILI Teachers' Library</title>
+
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Tool-specific styles that don't belong in the main style.css */
+    textarea {
+      width: 100%;
+      field-sizing: content;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f8f9fa;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      resize: none;
+      box-sizing: border-box;
+      color: #333;
+      font-family: inherit;
+      margin-bottom: 15px;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #0056b3;
+      box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
+    }
+
+    button {
+      /* Resetting default button styles so it inherits your .btn class smoothly */
+      border: none;
+      cursor: pointer;
+    }
+
+    button.copied {
+      background-color: #28a745; /* Success green */
+    }
+
+    button.copied:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <header>
+      <img src="logo.png" alt="ILI Teachers' Library Logo" class="logo">
+      <h1>Welcome Message</h1>
+      <p class="hero-text">Copy the message below to send it to newly verified teachers.</p>
+    </header>
+
+    <div class="card card-highlight">
+      <textarea id="welcomeMessage" readonly>📚 Welcome to the ILI Teachers' Library! Your information has been verified, and you now officially have viewer access to our shared collection of teaching resources. To get started, please read the Library Guide: https://docs.google.com/document/d/1WSk9yHkqQycZu4vURZNuygxonjyF3ygwOR2QoXJScZ0</textarea>
+
+      <!-- Reusing your standard .btn class for consistency -->
+      <button id="copyBtn" class="btn">📋 Copy Message</button>
+    </div>
+
+  </div>
+
+  <script>
+    const textArea = document.getElementById("welcomeMessage");
+    const button = document.getElementById("copyBtn");
+
+    button.addEventListener("click", () => {
+      navigator.clipboard.writeText(textArea.value);
+      button.textContent = "Copied! ✅";
+      button.classList.add("copied");
+
+      setTimeout(() => {
+        button.textContent = "📋 Copy Message";
+        button.classList.remove("copied");
+      }, 2000);
+    });
+  </script>
+
+</body>
+
+</html>
